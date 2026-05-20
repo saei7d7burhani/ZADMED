@@ -1,0 +1,22 @@
+---
+import AboutSection from "../components/AboutSection.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageIntro from "../components/PageIntro.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import WhySection from "../components/WhySection.astro";
+---
+
+<BaseLayout title="About ZADMED" description="Learn more about ZADMED's mission, clinical focus, and cardiovascular solutions.">
+  <SiteHeader />
+  <main>
+    <PageIntro
+      eyebrow="About Us"
+      title="Built around better cardiovascular outcomes"
+      description="Discover how ZADMED combines clinical evidence, product expertise, and long-term support to serve healthcare professionals."
+    />
+    <AboutSection />
+    <WhySection />
+  </main>
+  <SiteFooter />
+</BaseLayout>

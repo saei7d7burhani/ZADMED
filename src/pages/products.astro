@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageIntro from "../components/PageIntro.astro";
+import ProductsSection from "../components/ProductsSection.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+---
+
+<BaseLayout title="ZADMED Products" description="Browse ZADMED's cardiovascular product portfolio.">
+  <SiteHeader />
+  <main>
+    <PageIntro
+      eyebrow="Products"
+      title="A focused portfolio for coronary intervention"
+      description="Explore the flagship product lines designed to address a broad spectrum of coronary artery disease treatment needs."
+    />
+    <ProductsSection />
+  </main>
+  <SiteFooter />
+</BaseLayout>

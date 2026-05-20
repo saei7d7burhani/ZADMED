@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactSection from "../components/ContactSection.astro";
+import ContactCta from "../components/ContactCta.astro";
+import PageIntro from "../components/PageIntro.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+---
+
+<BaseLayout title="Contact ZADMED" description="Contact ZADMED for product information, samples, and clinical support.">
+  <SiteHeader />
+  <main>
+    <PageIntro
+      eyebrow="Contact Us"
+      title="Start a conversation with our team"
+      description="Use the form below or reach out directly for product inquiries, sample requests, and institutional support."
+    />
+    <ContactSection />
+    <ContactCta />
+  </main>
+  <SiteFooter />
+</BaseLayout>
