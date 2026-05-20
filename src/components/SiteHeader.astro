@@ -1,14 +1,56 @@
 <nav>
-  <a href="/" class="logo">
-    <div class="logo-icon">
-        
-    </div>
-    <span class="logo-text">ZAD<span>MED</span></span>
-  </a>
-  <ul class="nav-links">
+ <a href="/" class="logo-img">
+  <img 
+    src="/images/ZADMEDlogo.svg" 
+    alt="ZADMED Logo" 
+    class="logo-img"
+  />
+</a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
+    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bar"></span>
+  </button>
+  <ul class="nav-links" id="primary-nav">
     <li><a href="/">Home</a></li>
     <li><a href="/about">About</a></li>
     <li><a href="/products">Products</a></li>
     <li><a href="/contact" class="nav-cta">Contact Us</a></li>
   </ul>
 </nav>
+
+<script>
+  const nav = document.querySelector("nav");
+  const toggle = document.querySelector(".nav-toggle");
+  const links = document.querySelector(".nav-links");
+
+  if (nav && toggle && links) {
+    const setOpen = (open: boolean) => {
+      nav.classList.toggle("nav-open", open);
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+
+    toggle.addEventListener("click", () => {
+      const isOpen = nav.classList.contains("nav-open");
+      setOpen(!isOpen);
+    });
+
+    links.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setOpen(false));
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 600) {
+        setOpen(false);
+      }
+    });
+  }
+</script>
+
+<style>
+  .logo-img {
+    height: 64px;        /* controls how tall it appears in nav */
+    width: auto;         /* keeps aspect ratio */
+    object-fit: contain;
+  }
+</style>
