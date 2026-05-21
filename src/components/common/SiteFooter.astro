@@ -1,3 +1,7 @@
+---
+import { footerLinks } from "../../data/navigation.ts";
+---
+
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
@@ -17,17 +21,19 @@
     <div class="footer-col">
       <h4>Navigation</h4>
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/products">Products</a></li>
-        <li><a href="/contact">Contact</a></li>
+        {footerLinks.navigation.map(link => (
+          <li><a href={link.href}>{link.labelKey === 'nav.home' ? 'Home' : link.labelKey === 'nav.about' ? 'About' : link.labelKey === 'nav.products' ? 'Products' : link.labelKey === 'nav.contact' ? 'Contact' : link.labelKey}</a></li>
+        ))}
       </ul>
     </div>
     <div class="footer-col">
       <h4>Products</h4>
       <ul>
-        <li><a href="/products">Restore&reg; DEB</a></li>
-        <li><a href="/products">Xlimus&reg; DES</a></li>
+        {footerLinks.products.map(link => (
+          <li><a href={link.href} set:html={link.label}></a></li>
+        ))}
+      </ul>
+    </div>
       </ul>
     </div>
   </div>

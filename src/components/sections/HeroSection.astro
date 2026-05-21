@@ -1,37 +1,40 @@
+---
+import { getTranslations } from "../../i18n/ui.ts";
+
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/ar') ? 'ar' : 'en';
+const t = getTranslations(lang);
+---
+
 <section class="hero" id="about">
   <div class="hero-grid"></div>
   <div class="hero-strip"></div>
 
   <div class="hero-content">
-    <div class="hero-badge">Advanced Cardiovascular Solutions</div>
-    <h1>
-      Precision Tools for<br />
-      <em>Life-Saving</em><br />
-      Interventions
-    </h1>
+    <div class="hero-badge">{t('hero.badge')}</div>
+    <!-- set:html allows the <br> and <em> tags from the dictionary to render -->
+    <h1 set:html={t('hero.title')}></h1>
     <p>
-      ZADMED delivers world-class cardiovascular medical instruments
-      to healthcare professionals, combining innovative technology
-      with clinically proven performance.
+      {t('hero.subtitle')}
     </p>
     <div class="hero-actions">
-      <a href="/products" class="btn-primary">Explore Products</a>
-      <a href="/contact" class="btn-secondary">Get in Touch</a>
+      <a href={lang === 'ar' ? "/ar/products" : "/products"} class="btn-primary">{t('hero.ctaPrimary')}</a>
+      <a href={lang === 'ar' ? "/ar/contact" : "/contact"} class="btn-secondary">{t('hero.ctaSecondary')}</a>
     </div>
   </div>
 
   <div class="hero-stats">
     <div class="stat-card">
-      <span class="num">10M+</span>
-      <span class="label">Patients Treated</span>
+      <span class="num">{t('hero.stats.num1')}</span>
+      <span class="label">{t('hero.stats.label1')}</span>
     </div>
     <div class="stat-card">
-      <span class="num">5yr</span>
-      <span class="label">Clinical Follow-up</span>
+      <span class="num">{t('hero.stats.num2')}</span>
+      <span class="label">{t('hero.stats.label2')}</span>
     </div>
     <div class="stat-card">
-      <span class="num">98%+</span>
-      <span class="label">Procedural Success</span>
+      <span class="num">{t('hero.stats.num3')}</span>
+      <span class="label">{t('hero.stats.label3')}</span>
     </div>
   </div>
 </section>

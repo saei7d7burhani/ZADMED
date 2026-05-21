@@ -1,3 +1,7 @@
+---
+import { navLinks } from "../../data/navigation.ts";
+---
+
 <nav>
  <a href="/" class="logo-img">
   <img 
@@ -12,9 +16,9 @@
     <span class="nav-toggle-bar"></span>
   </button>
   <ul class="nav-links" id="primary-nav">
-    <li><a href="/">Home</a></li>
-    <li><a href="/about">About</a></li>
-    <li><a href="/products">Products</a></li>
+    {navLinks.map(link => (
+      <li><a href={link.href}>{link.labelKey === 'nav.home' ? 'Home' : link.labelKey === 'nav.about' ? 'About' : link.labelKey === 'nav.products' ? 'Products' : link.labelKey}</a></li>
+    ))}
     <li><a href="/contact" class="nav-cta">Contact Us</a></li>
   </ul>
 </nav>

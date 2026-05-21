@@ -1,9 +1,12 @@
+---
+import { partners } from "../../data/partners.ts";
+---
+
 <div class="partners">
   <span class="partners-label">Trusted Partners</span>
   <div class="partners-logos">
-    <span class="partner-logo"><strong>CARDIONOVUM</strong></span>
-    <span class="partner-logo">restore<strong>&reg;</strong> DEB</span>
-    <span class="partner-logo"><strong>X</strong>LIMUS<strong>&reg;</strong></span>
-    <span class="partner-logo">SAFE<strong>PAX</strong>&reg;</span>
+    {partners.map(partner => (
+      <span class="partner-logo" set:html={partner.labelHTML} />
+    ))}
   </div>
 </div>
