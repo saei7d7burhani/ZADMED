@@ -1,8 +1,22 @@
 ---
-import LandingPage from "../components/LandingPage.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroSection from "../components/sections/HeroSection.astro";
+import PartnersStrip from "../components/sections/PartnersStrip.astro";
+import WhySection from "../components/sections/WhySection.astro";
+import ContactCta from "../components/sections/ContactCta.astro";
+import SiteHeader from "../components/common/SiteHeader.astro";
+import SiteFooter from "../components/common/SiteFooter.astro";
 ---
 
 <BaseLayout title="ZADMED - Advanced Cardiovascular Solutions">
-  <LandingPage />
+  <SiteHeader />
+
+  <main>
+    <HeroSection />
+    <PartnersStrip />
+    <WhySection />
+    <ContactCta />
+  </main>
+
+  <SiteFooter />
 </BaseLayout>
