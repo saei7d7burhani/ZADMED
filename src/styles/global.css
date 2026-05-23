@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
+
 :root {
 	--blue-deep: #0b1e6e;
 	--blue-mid: #1a3acc;
@@ -676,6 +678,52 @@ section {
 
 .products {
 	background: var(--off-white);
+}
+
+/* ----------------------------------
+   RTL Overrides
+---------------------------------- */
+
+html[dir="rtl"] body {
+	font-family: "Cairo", sans-serif;
+}
+
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4,
+html[dir="rtl"] nav,
+html[dir="rtl"] .logo-text {
+	font-family: "Cairo", sans-serif;
+}
+
+html[dir="rtl"] .feature-item:hover {
+	transform: translateX(-4px);
+}
+
+html[dir="rtl"] .section-label::before {
+	display: none;
+}
+
+html[dir="rtl"] .section-label::after {
+	content: "";
+	width: 24px;
+	height: 2px;
+	background: var(--gold);
+}
+
+html[dir="rtl"] .product-link .arrow {
+	display: inline-block;
+	transform: scaleX(-1);
+}
+
+html[dir="rtl"] nav ul {
+	flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .hero-stats {
+	left: 6%;
+	right: auto;
 }
 
 .products-header {

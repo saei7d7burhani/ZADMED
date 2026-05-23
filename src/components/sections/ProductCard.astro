@@ -1,0 +1,181 @@
+---
+interface Feature {
+  text: string;
+  key: string;
+}
+
+interface Spec {
+  label: string;
+  labelKey: string;
+  value: string;
+  valueKey: string;
+}
+
+export interface Props {
+  tag: string;
+  tagKey: string;
+  title: string;
+  titleKey: string;
+  description: string;
+  descKey: string;
+  accentColor?: string;
+  tagColor?: string;
+  features: Feature[];
+  specs: Spec[];
+  linkHref?: string;
+}
+
+const {
+  tag,
+  tagKey,
+  title,
+  titleKey,
+  description,
+  descKey,
+  accentColor = "var(--blue-mid)",
+  tagColor = "rgba(26, 58, 204, 0.1)",
+  features,
+  specs,
+  linkHref = "/contact"
+} = Astro.props;
+---
+
+<article class="product-card" style={`--accent: ${accentColor}; --tag-bg: ${tagColor};`}>
+  <div class="product-card-top">
+    <div class="product-tag" data-i18n={tagKey}>{tag}</div>
+    <h3 data-i18n={titleKey}>{title}</h3>
+    <p data-i18n={descKey}>{description}</p>
+  </div>
+  <div class="product-card-body">
+    <ul class="product-features">
+      {features.map((feature) => (
+        <li data-i18n={feature.key}>{feature.text}</li>
+      ))}
+    </ul>
+    <div class="product-specs">
+      {specs.map((spec) => (
+        <div class="spec">
+          <div class="sk" data-i18n={spec.labelKey}>{spec.label}</div>
+          <div class="sv" data-i18n={spec.valueKey}>{spec.value}</div>
+        </div>
+      ))}
+    </div>
+    <a href={linkHref} class="product-link">
+      <span data-i18n="products.requestInfo">Request Information</span> <span class="arrow">&rarr;</span>
+    </a>
+  </div>
+</article>
+
+<style>
+  .product-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(11, 30, 110, 0.05);
+  }
+  .product-card-top {
+    padding: 36px 32px 28px;
+    background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-mid) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .product-card-top::after {
+    content: "";
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    width: 120px;
+    height: 120px;
+    background: rgba(245, 168, 0, 0.1); /* This is #f5a8001a in hex + alpha */
+    border-radius: 50%;
+  }
+  .product-tag {
+    display: inline-block;
+    background: color-mix(in srgb, var(--gold-light) 25%, transparent);
+    color: var(--gold);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .product-card h3 {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .product-card-top p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+  .product-card-body {
+    padding: 24px;
+  }
+  .product-features {
+    list-style: none;
+    margin-bottom: 24px;
+  }
+  .product-features li {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    padding-inline-start: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .product-features li::before {
+    content: "";
+    color: var(--accent);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+  }
+  html[dir="rtl"] .product-features li::before {
+    left: auto;
+    right: 0;
+  }
+  .product-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 16px;
+    background: var(--off-white);
+    border-radius: 12px;
+    margin-bottom: 24px;
+  }
+  .spec {
+    font-size: 13px;
+  }
+  .sk {
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .sv {
+    font-weight: 700;
+    color: var(--text-dark);
+  }
+  .product-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    text-decoration: none;
+  }
+</style>

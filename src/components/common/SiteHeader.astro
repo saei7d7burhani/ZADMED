@@ -1,5 +1,6 @@
 ---
 import { navLinks } from "../../data/navigation.ts";
+import LangToggle from "./LangToggle.astro";
 ---
 
 <nav>
@@ -17,9 +18,10 @@ import { navLinks } from "../../data/navigation.ts";
   </button>
   <ul class="nav-links" id="primary-nav">
     {navLinks.map(link => (
-      <li><a href={link.href}>{link.labelKey === 'nav.home' ? 'Home' : link.labelKey === 'nav.about' ? 'About' : link.labelKey === 'nav.products' ? 'Products' : link.labelKey}</a></li>
+      <li><a href={link.href} data-i18n={link.labelKey}>{link.labelKey === 'nav.home' ? 'Home' : link.labelKey === 'nav.about' ? 'About' : link.labelKey === 'nav.products' ? 'Products' : link.labelKey}</a></li>
     ))}
-    <li><a href="/contact" class="nav-cta">Contact Us</a></li>
+    <li><a href="/contact" class="nav-cta" data-i18n="nav.contactCta">Contact Us</a></li>
+    <li><LangToggle /></li>
   </ul>
 </nav>
 

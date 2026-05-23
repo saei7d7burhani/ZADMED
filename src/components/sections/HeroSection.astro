@@ -11,30 +11,30 @@ const t = getTranslations(lang);
   <div class="hero-strip"></div>
 
   <div class="hero-content">
-    <div class="hero-badge">{t('hero.badge')}</div>
+    <div class="hero-badge" data-i18n="hero.badge">{t('hero.badge')}</div>
     <!-- set:html allows the <br> and <em> tags from the dictionary to render -->
-    <h1 set:html={t('hero.title')}></h1>
-    <p>
+    <h1 set:html={t('hero.title')} data-i18n="hero.title"></h1>
+    <p data-i18n="hero.subtitle">
       {t('hero.subtitle')}
     </p>
     <div class="hero-actions">
-      <a href={lang === 'ar' ? "/ar/products" : "/products"} class="btn-primary">{t('hero.ctaPrimary')}</a>
-      <a href={lang === 'ar' ? "/ar/contact" : "/contact"} class="btn-secondary">{t('hero.ctaSecondary')}</a>
+      <a href={lang === 'ar' ? "/ar/products" : "/products"} class="btn-primary" data-i18n="hero.ctaPrimary">{t('hero.ctaPrimary')}</a>
+      <a href={lang === 'ar' ? "/ar/contact" : "/contact"} class="btn-secondary" data-i18n="hero.ctaSecondary">{t('hero.ctaSecondary')}</a>
     </div>
   </div>
 
   <div class="hero-stats">
     <div class="stat-card">
-      <span class="num">{t('hero.stats.num1')}</span>
-      <span class="label">{t('hero.stats.label1')}</span>
+      <span class="num" data-i18n="hero.stats.num1">{t('hero.stats.num1')}</span>
+      <span class="label" data-i18n="hero.stats.label1">{t('hero.stats.label1')}</span>
     </div>
     <div class="stat-card">
-      <span class="num">{t('hero.stats.num2')}</span>
-      <span class="label">{t('hero.stats.label2')}</span>
+      <span class="num" data-i18n="hero.stats.num2">{t('hero.stats.num2')}</span>
+      <span class="label" data-i18n="hero.stats.label2">{t('hero.stats.label2')}</span>
     </div>
     <div class="stat-card">
-      <span class="num">{t('hero.stats.num3')}</span>
-      <span class="label">{t('hero.stats.label3')}</span>
+      <span class="num" data-i18n="hero.stats.num3">{t('hero.stats.num3')}</span>
+      <span class="label" data-i18n="hero.stats.label3">{t('hero.stats.label3')}</span>
     </div>
   </div>
 </section>

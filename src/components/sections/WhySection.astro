@@ -3,9 +3,9 @@ import { whyFeatures } from "../../data/whyFeatures.ts";
 ---
 
 <section class="why" id="why">
-  <div class="section-label">Why Choose Us</div>
-  <h2 class="section-title">Not All Medical Partners<br />Are The Same</h2>
-  <p class="section-sub">
+  <div class="section-label" data-i18n="why.label">Why Choose Us</div>
+  <h2 class="section-title" data-i18n="why.title">Not All Medical Partners<br />Are The Same</h2>
+  <p class="section-sub" data-i18n="why.subtitle">
     We bring the most innovative cardiovascular technologies to your practice,
     backed by clinical evidence and dedicated support.
   </p>
@@ -16,8 +16,8 @@ import { whyFeatures } from "../../data/whyFeatures.ts";
         <div class="feature-item">
           <div class="feature-icon">{feature.icon}</div>
           <div>
-            <h3>{feature.fallbackTitle}</h3>
-            <p>{feature.fallbackDesc}</p>
+            <h3 data-i18n={feature.titleKey}>{feature.fallbackTitle}</h3>
+            <p data-i18n={feature.descKey}>{feature.fallbackDesc}</p>
           </div>
         </div>
       ))}
@@ -25,8 +25,8 @@ import { whyFeatures } from "../../data/whyFeatures.ts";
 
     <div class="why-visual">
       <div class="why-card-main">
-        <h3>Life Deserves The Best</h3>
-        <p>
+        <h3 data-i18n="why.card.title">Life Deserves The Best</h3>
+        <p data-i18n="why.card.desc">
           We partner with world-leading manufacturers to bring you the most
           advanced coronary intervention solutions available, rigorously
           tested, CE certified, and trusted by cardiologists globally.

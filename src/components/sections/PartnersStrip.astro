@@ -3,8 +3,8 @@ import { partners } from "../../data/partners.ts";
 ---
 
 <div class="partners">
-  <span class="partners-label">Trusted Partners</span>
-  <div class="partners-logos">
+  <span class="partners-label" data-i18n="partners.label">Trusted Partners</span>
+  <div class="partners-logos" title="Trusted by leading healthcare institutions" data-i18n="partners.title">
     {partners.map(partner => (
       <span class="partner-logo" set:html={partner.labelHTML} />
     ))}

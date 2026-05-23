@@ -1,0 +1,38 @@
+---
+// src/components/common/LangToggle.astro
+---
+
+<button id="lang-toggle-btn" class="lang-toggle" aria-label="Toggle language">
+  AR
+</button>
+
+<style>
+  .lang-toggle {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    font-size: 0.9rem;
+  }
+  
+  .lang-toggle:hover {
+    background: var(--gold);
+    color: var(--blue-deep);
+  }
+</style>
+
+<script>
+  import { toggleLang } from "../../i18n/utils";
+  
+  const btn = document.getElementById('lang-toggle-btn');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      toggleLang();
+    });
+  }
+</script>

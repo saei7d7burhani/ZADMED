@@ -3,15 +3,18 @@ interface Props {
   eyebrow: string;
   title: string;
   description: string;
+  eyebrowKey?: string;
+  titleKey?: string;
+  descKey?: string;
 }
 
-const { eyebrow, title, description } = Astro.props;
+const { eyebrow, title, description, eyebrowKey, titleKey, descKey } = Astro.props;
 ---
 
 <section class="page-intro">
   <div class="page-intro-inner">
-    <div class="section-label">{eyebrow}</div>
-    <h1 class="page-title">{title}</h1>
-    <p class="page-description">{description}</p>
+    <div class="section-label" data-i18n={eyebrowKey}>{eyebrow}</div>
+    <h1 class="page-title" data-i18n={titleKey}>{title}</h1>
+    <p class="page-description" data-i18n={descKey}>{description}</p>
   </div>
 </section>
