@@ -20,6 +20,7 @@ export interface Props {
   descKey: string;
   accentColor?: string;
   tagColor?: string;
+  image?: string;
   features: Feature[];
   specs: Spec[];
   linkHref?: string;
@@ -34,6 +35,7 @@ const {
   descKey,
   accentColor = "var(--blue-mid)",
   tagColor = "rgba(26, 58, 204, 0.1)",
+  image,
   features,
   specs,
   linkHref = "/contact"
@@ -47,11 +49,18 @@ const {
     <p data-i18n={descKey}>{description}</p>
   </div>
   <div class="product-card-body">
-    <ul class="product-features">
-      {features.map((feature) => (
-        <li data-i18n={feature.key}>{feature.text}</li>
-      ))}
-    </ul>
+    <div class="product-features-row">
+      <ul class="product-features">
+        {features.map((feature) => (
+          <li data-i18n={feature.key}>{feature.text}</li>
+        ))}
+      </ul>
+      {image && (
+        <div class="product-image">
+          <img src={image} alt={title} loading="lazy" />
+        </div>
+      )}
+    </div>
     <div class="product-specs">
       {specs.map((spec) => (
         <div class="spec">
@@ -126,9 +135,30 @@ const {
   .product-card-body {
     padding: 24px;
   }
+  .product-features-row {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    margin-bottom: 32px;
+    justify-content: space-between;
+  }
+  .product-image {
+    flex: 0 1 240px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .product-image img {
+    max-width: 100%;
+    max-height: 220px;
+    height: auto;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    filter: drop-shadow(0 8px 16px rgba(11, 30, 110, 0.1));
+  }
   .product-features {
     list-style: none;
-    margin-bottom: 24px;
+    flex: 1 1 50%;
   }
   .product-features li {
     font-size: 14px;

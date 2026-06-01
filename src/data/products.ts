@@ -8,6 +8,7 @@ export const products = [
     description: "Paclitaxel releasing PTCA balloon catheter powered by Safepax® amorphous coating technology.",
     descKey: "prod.restore.desc",
     styleTheme: "default", // Used to conditionally apply xlimus classes
+    image: "/images/RESTORE-DEB®.webp",
     features: [
       { text: "No distal embolization, amorphous coating", key: "prod.restore.f1" },
       { text: "No slow coronary flow risk", key: "prod.restore.f2" },
@@ -32,6 +33,7 @@ export const products = [
     description: "Sirolimus-eluting cobalt chromium coronary stent with biodegradable polymer drug elution technology.",
     descKey: "prod.xlimus.desc",
     styleTheme: "xlimus",
+    image: "/images/XLIMUS®.webp",
     features: [
       { text: "Ultra-thin 73 um struts, L-605 cobalt chromium", key: "prod.xlimus.f1"},
       { text: "6-8-10 cell design for homogeneous scaffolding", key: "prod.xlimus.f2"},

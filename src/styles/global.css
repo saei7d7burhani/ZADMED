@@ -180,6 +180,14 @@ nav {
 	border-left: 2px solid rgba(245, 168, 0, 0.3);
 	transform: skewX(-8deg);
 	transform-origin: top right;
+	background-image: url('/public/images/heropic.webp'); 
+	background-size: cover;
+  	background-position:  30%;
+  	background-repeat: no-repeat;
+    min-height: 500px; 
+
+
+	
 }
 
 .hero-content {

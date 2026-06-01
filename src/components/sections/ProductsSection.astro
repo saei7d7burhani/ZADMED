@@ -25,6 +25,7 @@ import ProductCard from "./ProductCard.astro";
         descKey={product.descKey}
         accentColor={product.styleTheme === 'xlimus' ? 'var(--blue-deep)' : 'var(--blue-mid)'}
         tagColor={product.styleTheme === 'xlimus' ? 'rgba(11, 30, 110, 0.1)' : 'rgba(26, 58, 204, 0.1)'}
+        image={product.image}
         features={product.features}
         specs={product.specs}
         linkHref={product.link}
