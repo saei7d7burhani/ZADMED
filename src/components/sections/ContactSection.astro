@@ -1,43 +1,8 @@
+---
+import ContactForm from "./ContactForm.astro";
+---
+
 <section class="contact-section">
-  <div class="contact-grid">
-    <div class="contact-copy">
-      <div class="section-label" data-i18n="contact.label">Contact Details</div>
-      <h2 class="section-title" data-i18n="contact.title">Talk to the ZADMED team</h2>
-      <p class="section-sub" data-i18n="contact.subtitle">
-        Reach out for product information, sampling requests, or clinical support for your institution.
-      </p>
-
-      <div class="contact-cards">
-        <a class="contact-card" href="mailto:info@zadmed.com">
-          <span class="contact-card-label" data-i18n="contact.email">Email</span>
-          <span class="contact-card-value">info@zadmed.com</span>
-        </a>
-        <a class="contact-card" href="tel:+0000000000">
-          <span class="contact-card-label" data-i18n="contact.phone">Phone</span>
-          <span class="contact-card-value">+00 000 000 000</span>
-        </a>
-        <div class="contact-card">
-          <span class="contact-card-label" data-i18n="contact.responseTime">Response time</span>
-          <span class="contact-card-value" data-i18n="contact.responseValue">Within 1 business day</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- For input placeholders, we need to adapt our i18n script to handle attributes. For now we use standard labels -->
-    <form class="contact-form" action="mailto:info@zadmed.com" method="post" enctype="text/plain">
-      <label class="field">
-        <span data-i18n="contact.form.name">Name</span>
-        <input type="text" name="name" placeholder="Your name" data-i18n="contact.form.namePlaceholder" />
-      </label>
-      <label class="field">
-        <span data-i18n="contact.form.email">Email</span>
-        <input type="email" name="email" placeholder="Your email" data-i18n="contact.form.emailPlaceholder" />
-      </label>
-      <label class="field">
-        <span data-i18n="contact.form.message">Message</span>
-        <textarea name="message" rows="6" placeholder="How can we help?" data-i18n="contact.form.messagePlaceholder"></textarea>
-      </label>
-      <button type="submit" class="btn-primary contact-submit" data-i18n="contact.form.submit">Send Message</button>
-    </form>
-  </div>
+  <ContactForm />
+  
 </section>

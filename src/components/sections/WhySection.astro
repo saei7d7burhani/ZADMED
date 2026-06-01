@@ -14,7 +14,9 @@ import { whyFeatures } from "../../data/whyFeatures.ts";
     <div class="why-features">
       {whyFeatures.map(feature => (
         <div class="feature-item">
-          <div class="feature-icon">{feature.icon}</div>
+          <div class="feature-icon">
+            <img src={feature.icon} alt="" loading="lazy" />
+          </div>
           <div>
             <h3 data-i18n={feature.titleKey}>{feature.fallbackTitle}</h3>
             <p data-i18n={feature.descKey}>{feature.fallbackDesc}</p>

@@ -1,0 +1,343 @@
+---
+// src/components/sections/ContactForm.astro
+---
+
+<section class="contact-form-wrapper">
+  <div class="contact-form-grid">
+    <!-- Form Side (Left) -->
+    <div class="form-side">
+      <div class="form-header">
+        <h2 data-i18n="contact.title">Send us a Message</h2>
+        <p data-i18n="contact.subtitle">Select the appropriate department below so we can route your inquiry quickly.</p>
+      </div>
+
+      <form id="contact-form" class="styled-form" novalidate>
+        <div class="form-row">
+          <label class="field-label" for="user-name">
+            <span>Name</span>
+            <input type="text" id="user-name" name="name" placeholder="Your full name" required />
+          </label>
+
+          <label class="field-label" for="user-email">
+            <span>Email Address</span>
+            <input type="email" id="user-email" name="email" placeholder="you@example.com" required />
+          </label>
+        </div>
+
+        <label class="field-label" for="department-select">
+          <span>Department</span>
+          <div class="select-wrapper">
+            <select id="department-select" name="department" required>
+              <option value="" disabled selected>Select a department...</option>
+              <option value="support@zadmed.com">Customer Support</option>
+              <option value="sales@zadmed.com">Sales & Partnerships</option>
+              <option value="billing@zadmed.com">Billing & Accounts</option>
+            </select>
+            <span class="select-icon">▼</span>
+          </div>
+        </label>
+
+        <label class="field-label" for="user-message">
+          <span>Message</span>
+          <textarea id="user-message" name="message" rows="5" placeholder="How can we help?" required></textarea>
+        </label>
+
+        <div class="form-footer">
+          <button type="submit" class="submit-btn" id="submit-btn">
+            <span class="btn-text">Send Message</span>
+            <span class="btn-spinner" style="display: none;">Wait...</span>
+          </button>
+          <div id="form-msg" class="form-msg" style="display: none;"></div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Contact Info Blocks (Right) -->
+    <div class="info-side">
+      <h3>Contact Information</h3>
+      <p>Whether you're looking for product samples, technical support, or billing information, we are here to assist you.</p>
+
+      <div class="info-blocks">
+        <div class="info-block">
+          <span class="info-label">Corporate Office</span>
+          <span class="info-value">123 Health Ave, Suite 400<br/>Medical District</span>
+        </div>
+        
+        <div class="info-block">
+          <span class="info-label">Direct Contact</span>
+          <span class="info-value">Phone: +00 000 000 000<br/>Email: info@zadmed.com</span>
+        </div>
+
+        <div class="info-block">
+          <span class="info-label">Support Hours</span>
+          <span class="info-value">Mon - Fri: 8:00 AM - 6:00 PM<br/>Response usually within 1 business day</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-form-wrapper {
+    margin: 40px 0;
+    font-family: inherit;
+  }
+  
+  .contact-form-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr; /* Form is left, Info is right */
+    gap: 40px;
+    align-items: flex-start;
+  }
+
+  /* Form Styling */
+  .form-side {
+    background: #ffffff;
+    border: 1px solid var(--border, #e5e7eb);
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  }
+
+  .form-header {
+    margin-bottom: 24px;
+  }
+
+  .form-header h2 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--blue-deep, #0b1e6e);
+    margin-bottom: 8px;
+  }
+
+  .form-header p {
+    color: var(--text-muted, #64748b);
+    font-size: 15px;
+  }
+
+  .styled-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .field-label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--text-dark, #1e293b);
+    font-weight: 600;
+  }
+
+  .styled-form input,
+  .styled-form select,
+  .styled-form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border, #e5e7eb);
+    background: #f9fafb;
+    font-size: 15px;
+    color: var(--text-dark, #1e293b);
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+
+  .styled-form input:focus,
+  .styled-form select:focus,
+  .styled-form textarea:focus {
+    outline: none;
+    border-color: var(--accent, var(--blue-mid, #1a3acc));
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(26, 58, 204, 0.1);
+  }
+
+  .select-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .select-wrapper select {
+    appearance: none;
+    padding-right: 32px;
+    cursor: pointer;
+  }
+
+  .select-icon {
+    position: absolute;
+    right: 12px;
+    pointer-events: none;
+    font-size: 12px;
+    color: var(--text-muted, #64748b);
+  }
+
+  /* Footer and button */
+  .form-footer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  .submit-btn {
+    background: var(--blue-mid, #1a3acc);
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    min-width: 160px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .submit-btn:hover {
+    background: var(--blue-deep, #0b1e6e);
+    transform: translateY(-1px);
+  }
+  
+  .submit-btn:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .form-msg {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  .msg-success { color: #16a34a; }
+  .msg-error { color: #dc2626; }
+
+  /* Info Side Styling */
+  .info-side {
+    background: linear-gradient(135deg, var(--blue-deep, #0b1e6e), var(--blue-mid, #1a3acc));
+    color: #ffffff;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  }
+
+  .info-side h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: var(--gold, #f5a800);
+  }
+
+  .info-side p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .info-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .info-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  
+  .info-block:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .info-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 700;
+  }
+
+  .info-value {
+    font-size: 15px;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 900px) {
+    .contact-form-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    /* Flip order logically if needed, but flex-col handles it gracefully */
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  html[dir="rtl"] .select-wrapper select {
+    padding-right: 14px;
+    padding-left: 32px;
+  }
+
+  html[dir="rtl"] .select-icon {
+    right: auto;
+    left: 12px;
+  }
+</style>
+
+<script>
+  // Simple client-side form logic simulation
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const btnText = submitBtn?.querySelector('.btn-text') as HTMLElement;
+  const btnSpinner = submitBtn?.querySelector('.btn-spinner') as HTMLElement;
+  const formMsg = document.getElementById('form-msg') as HTMLElement;
+
+  if (form && submitBtn && formMsg) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Check basic HTML5 validity
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      // Simulate network request
+      submitBtn.disabled = true;
+      if(btnText) btnText.style.display = 'none';
+      if(btnSpinner) btnSpinner.style.display = 'block';
+      formMsg.style.display = 'none';
+      formMsg.className = 'form-msg'; // Reset class
+
+      setTimeout(() => {
+        // Assume success for demo
+        formMsg.textContent = 'Message sent successfully! We will be in touch.';
+        formMsg.classList.add('msg-success');
+        formMsg.style.display = 'block';
+        
+        // Reset form and button
+        form.reset();
+        submitBtn.disabled = false;
+        if(btnText) btnText.style.display = 'block';
+        if(btnSpinner) btnSpinner.style.display = 'none';
+        
+      }, 1500);
+    });
+  }
+</script>

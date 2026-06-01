@@ -123,8 +123,15 @@ nav {
 	transition: color 0.2s;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.active-link {
 	color: var(--gold);
+	font-weight: 700;
+}
+
+.nav-links a.active-link {
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 4px;
 }
 
 .nav-cta {
@@ -139,6 +146,12 @@ nav {
 .nav-cta:hover {
 	background: var(--gold-light) !important;
 	transform: translateY(-1px);
+}
+
+.nav-cta.active-link {
+	border-bottom: none !important;
+	padding-bottom: 9px !important;
+	box-shadow: 0 0 0 2px var(--white);
 }
 
 .hero {
@@ -445,6 +458,8 @@ section {
 	color: var(--white);
 	display: grid;
 	gap: 16px;
+	position: sticky;
+	top: 100px;
 }
 
 .about-stat {
@@ -594,6 +609,12 @@ section {
 	font-weight: 700;
 }
 
+.feature-icon img {
+	width: 32px;
+	height: 32px;
+	object-fit: contain;
+}
+
 .feature-item h3 {
 	font-size: 16px;
 	font-weight: 700;
@@ -608,7 +629,8 @@ section {
 }
 
 .why-visual {
-	position: relative;
+	position: sticky;
+	top: 100px; /* Offset to keep it visible while scrolling */
 }
 
 .why-card-main {
@@ -725,8 +747,19 @@ html[dir="rtl"] .product-link .arrow {
 	transform: scaleX(-1);
 }
 
+/* Let natural RTL ordering take place so Home is far right, LangToggle is far left */
 html[dir="rtl"] nav ul {
-	flex-direction: row-reverse;
+	flex-direction: row;
+}
+
+html[dir="rtl"] .hero-strip {
+	right: auto;
+	left: -5%;
+	border-left: none;
+	border-right: 2px solid rgba(245, 168, 0, 0.3);
+	transform: skewX(8deg);
+	transform-origin: top left;
+	background-position: 32%;
 }
 
 html[dir="rtl"] .hero-stats {

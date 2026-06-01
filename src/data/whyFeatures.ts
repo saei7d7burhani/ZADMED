@@ -1,7 +1,7 @@
 export const whyFeatures = [
   {
     id: "ct",
-    icon: "CT",
+    icon: "/ICONS/medICO01.svg",
     titleKey: "why.ct.title",
     descKey: "why.ct.desc",
     fallbackTitle: "Clinically Proven Technology",
@@ -9,7 +9,7 @@ export const whyFeatures = [
   },
   {
     id: "ps",
-    icon: "PS",
+    icon: "/ICONS/medICO02.svg",
     titleKey: "why.ps.title",
     descKey: "why.ps.desc",
     fallbackTitle: "Enhanced Patient Safety",
@@ -17,7 +17,7 @@ export const whyFeatures = [
   },
   {
     id: "rg",
-    icon: "RG",
+    icon: "/ICONS/medICO03.svg",
     titleKey: "why.rg.title",
     descKey: "why.rg.desc",
     fallbackTitle: "Widest Product Range",
@@ -25,7 +25,7 @@ export const whyFeatures = [
   },
   {
     id: "cs",
-    icon: "CS",
+    icon: "/ICONS/medICO04.svg",
     titleKey: "why.cs.title",
     descKey: "why.cs.desc",
     fallbackTitle: "Dedicated Clinical Support",
