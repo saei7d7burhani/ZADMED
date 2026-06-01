@@ -5,15 +5,38 @@
       📍
     </span>
     <div>
-      <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Our Headquarters</h4>
+      <h4 class="text-lg font-semibold text-gray-900 dark:text-white" data-i18n="location.heading">Our Headquarters</h4>
       <address class="mt-2 not-italic text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-        <strong>Your Company Name Ltd.</strong><br />
-        123 Business Avenue, Suite 100<br />
-        New York, NY 10001
+        <strong data-i18n="location.companyName">ZADMED Ltd.</strong><br />
+        <span data-i18n="location.address">123 Business Avenue, Suite 100</span><br />
+        <span data-i18n="location.city">New York, NY 10001</span>
       </address>
-      <a href="https://google.com" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">
+      <a
+        href="https://maps.google.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-4 inline-flex items-center text-sm font-medium text-blue-600 hover:underline dark:text-blue-400"
+        data-i18n="location.directions"
+      >
         Get directions ↗
       </a>
     </div>
   </div>
 </div>
+
+<style>
+  /* RTL: flip the icon-and-text row */
+  html[dir="rtl"] .flex.items-start {
+    flex-direction: row-reverse;
+  }
+
+  html[dir="rtl"] address,
+  html[dir="rtl"] h4 {
+    text-align: right;
+  }
+
+  html[dir="rtl"] a[data-i18n="location.directions"] {
+    /* Reverse the arrow for RTL — ↗ becomes ↖ visually via direction flip */
+    flex-direction: row-reverse;
+  }
+</style>
