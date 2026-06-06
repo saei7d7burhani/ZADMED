@@ -23,7 +23,7 @@ import CompanyLocation from "./CompanyLocation.astro";
       <h4 data-i18n="footer.nav">Navigation</h4>
       <ul>
         {footerLinks.navigation.map(link => (
-          <li><a href={link.href} data-i18n={link.labelKey}>{link.labelKey === 'nav.home' ? 'Home' : link.labelKey === 'nav.about' ? 'About' : link.labelKey === 'nav.products' ? 'Products' : link.labelKey === 'nav.contact' ? 'Contact' : link.labelKey}</a></li>
+          <li><a href={link.href} data-i18n={link.labelKey}>{link.labelKey === 'nav.home' ? '' : link.labelKey === 'nav.about' ? '' : link.labelKey === 'nav.products' ? '' : link.labelKey === 'nav.contact' ? '' : link.labelKey}</a></li>
         ))}
       </ul>
     </div>
@@ -35,13 +35,12 @@ import CompanyLocation from "./CompanyLocation.astro";
         ))}
       </ul>
     </div>
-      </ul>
-    </div>
+        <CompanyLocation />
+
   </div>
   <div class="footer-bottom">
     <span data-i18n="footer.copyright">&copy; 2026 ZADMED. All rights reserved.</span>
     <a href="mailto:info@zadmed.com">info@zadmed.com</a>
-    <CompanyLocation />
   </div>
 </footer>
 
