@@ -175,26 +175,6 @@
     box-shadow: 0 0 0 3px rgba(26, 58, 204, 0.1);
   }
 
-  .select-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-
-  .select-wrapper select {
-    appearance: none;
-    padding-right: 32px;
-    cursor: pointer;
-  }
-
-  .select-icon {
-    position: absolute;
-    right: 12px;
-    pointer-events: none;
-    font-size: 12px;
-    color: var(--text-muted, #64748b);
-  }
-
   .form-footer {
     display: flex;
     align-items: center;
@@ -320,17 +300,6 @@
     direction: rtl;
   }
 
-  html[dir="rtl"] .select-wrapper select {
-    padding-right: 14px;
-    padding-left: 32px;
-    direction: rtl;
-  }
-
-  html[dir="rtl"] .select-icon {
-    right: auto;
-    left: 12px;
-  }
-
   html[dir="rtl"] .info-side h3,
   html[dir="rtl"] .info-side p,
   html[dir="rtl"] .info-label,
@@ -345,93 +314,61 @@
 
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement;
-  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
-  const btnText = submitBtn?.querySelector('.btn-text') as HTMLElement;
-  const btnSpinner = submitBtn?.querySelector('.btn-spinner') as HTMLElement;
-  const formMsg = document.getElementById('form-msg') as HTMLElement;
+const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+const btnText = submitBtn?.querySelector('.btn-text') as HTMLElement;
+const btnSpinner = submitBtn?.querySelector('.btn-spinner') as HTMLElement;
+const formMsg = document.getElementById('form-msg') as HTMLElement;
 
-  // Handle data-i18n-placeholder on inputs/textareas
-  function updatePlaceholders() {
-    const lang = localStorage.getItem('lang') || 'en';
-    document.querySelectorAll<HTMLElement>('[data-i18n-placeholder]').forEach((el) => {
-      const key = el.getAttribute('data-i18n-placeholder');
-      if (!key) return;
-      // Import translations inline — reuse window.__i18n if available, else fallback
-      const translations = (window as any).__zadmedTranslations;
-      if (translations && translations[lang] && translations[lang][key]) {
-        (el as HTMLInputElement).placeholder = translations[lang][key];
-      }
-    });
-  }
-
-  // Also update select option text for data-i18n on <option> elements
-  function updateOptions() {
-    const lang = localStorage.getItem('lang') || 'en';
-    document.querySelectorAll<HTMLOptionElement>('option[data-i18n]').forEach((el) => {
-      const key = el.getAttribute('data-i18n');
-      if (!key) return;
-      const translations = (window as any).__zadmedTranslations;
-      if (translations && translations[lang] && translations[lang][key]) {
-        el.textContent = translations[lang][key];
-      }
-    });
-  }
-
-  window.addEventListener('langchange', () => {
-    updatePlaceholders();
-    updateOptions();
-  });
-  document.addEventListener('DOMContentLoaded', () => {
-    updatePlaceholders();
-    updateOptions();
-  });
-
-  if (form && submitBtn && formMsg) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-      submitBtn.disabled = true;
-      if(btnText) btnText.style.display = 'none';
-      if(btnSpinner) btnSpinner.style.display = 'block';
-      formMsg.style.display = 'none';
-      formMsg.className = 'form-msg';
-
-      form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  if (!form.checkValidity()) { form.reportValidity(); return; }
-
-  submitBtn.disabled = true;
-  if (btnText) btnText.style.display = 'none';
-  if (btnSpinner) btnSpinner.style.display = 'block';
-
-  const res = await fetch('https://formspree.io/f/YOUR_ID', {
-    method: 'POST',
-    body: new FormData(form),
-    headers: { 'Accept': 'application/json' }
-  });
-
+function updatePlaceholders() {
   const lang = localStorage.getItem('lang') || 'en';
-  if (res.ok) {
-    formMsg.textContent = lang === 'ar'
-      ? 'تم إرسال رسالتك بنجاح! سنتواصل معك قريبًا.'
-      : 'Message sent! We will be in touch.';
-    formMsg.classList.add('msg-success');
-    form.reset();
-  } else {
-    formMsg.textContent = lang === 'ar'
-      ? 'حدث خطأ. حاول مرة أخرى.'
-      : 'Something went wrong. Please try again.';
-    formMsg.classList.add('msg-error');
-  }
+  document.querySelectorAll<HTMLElement>('[data-i18n-placeholder]').forEach((el) => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (!key) return;
+    const translations = (window as any).__zadmedTranslations;
+    if (translations?.[lang]?.[key]) {
+      (el as HTMLInputElement).placeholder = translations[lang][key];
+    }
+  });
+}
 
-  formMsg.style.display = 'block';
-  submitBtn.disabled = false;
-  if (btnText) btnText.style.display = 'block';
-  if (btnSpinner) btnSpinner.style.display = 'none';
-});
+window.addEventListener('langchange', updatePlaceholders);
+document.addEventListener('DOMContentLoaded', updatePlaceholders);
+
+if (form && submitBtn && formMsg) {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    submitBtn.disabled = true;
+    if (btnText) btnText.style.display = 'none';
+    if (btnSpinner) btnSpinner.style.display = 'block';
+    formMsg.style.display = 'none';
+    formMsg.className = 'form-msg';
+
+    const res = await fetch('https://formspree.io/f/YOUR_ID', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
     });
-  }
+
+    const lang = localStorage.getItem('lang') || 'en';
+    if (res.ok) {
+      formMsg.textContent = lang === 'ar'
+        ? 'تم إرسال رسالتك بنجاح! سنتواصل معك قريبًا.'
+        : 'Message sent! We will be in touch.';
+      formMsg.classList.add('msg-success');
+      form.reset();
+    } else {
+      formMsg.textContent = lang === 'ar'
+        ? 'حدث خطأ. حاول مرة أخرى.'
+        : 'Something went wrong. Please try again.';
+      formMsg.classList.add('msg-error');
+    }
+
+    formMsg.style.display = 'block';
+    submitBtn.disabled = false;
+    if (btnText) btnText.style.display = 'block';
+    if (btnSpinner) btnSpinner.style.display = 'none';
+  });
+}
 </script>
