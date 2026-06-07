@@ -17,12 +17,13 @@ const isActive = (href: string) => {
 ---
 
 <nav>
- <a href={isRtl ? "/ar" : "/"} class="logo-img">
+<a href={isRtl ? "/ar" : "/"} class="logo-wrap">
   <img 
     src="/images/ZADMEDlogo.svg" 
     alt="ZADMED Logo" 
     class="logo-img"
   />
+  <span class="logo-text">ZAD<span>MED</span></span>
 </a>
   <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
     <span class="nav-toggle-bar"></span>
@@ -91,4 +92,23 @@ const isActive = (href: string) => {
     width: auto;         /* keeps aspect ratio */
     object-fit: contain;
   }
+  .logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.logo-text span {
+  color: var(--gold, #f5a800);
+}
 </style>
