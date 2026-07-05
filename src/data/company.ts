@@ -1,7 +1,7 @@
 export const company = {
   name: "ZADMED",
   tagline: "Advanced Cardiovascular Solutions",
-  email: "info@zadmed.com",
+  email: "info@zadmed.org",
   phone: "+1 (555) 123-4567",
   address: "123 Medical Center Blvd, Suite 400, Chicago, IL 60601",
   stats: [

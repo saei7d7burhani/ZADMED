@@ -13,7 +13,11 @@
   we'll get back to you as soon as possible.</p>
       </div>
 
-      <form id="contact-form" class="styled-form" novalidate>
+      <form id="contact-form" class="styled-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+        <input type="hidden" name="access_key" value="0eacdc28-8866-4fed-a901-1e7a2c1f65cf" />
+        <input type="hidden" name="subject" value="New message from ZADMED website" />
+        <input type="hidden" name="from_name" value="ZADMED Website" />
+        <input type="checkbox" name="botcheck" style="display: none;" tabindex="-1" autocomplete="off" />
         <div class="form-row">
           <label class="field-label" for="user-phone">
         <span data-i18n="contact.form.phone">Phone Number</span>
@@ -61,8 +65,9 @@
   <span class="info-value">
     +963-11-2310855<br/>
     +963-11-2314041<br/>
-    +963-99-1977774<br/>
-    info@zadmed.co
+    +963-96-5255502<br/>
+    +963-96-5255501<br/>
+    info@zadmed.org
   </span>
         </div>
 
@@ -313,62 +318,19 @@
 </style>
 
 <script>
-  const form = document.getElementById('contact-form') as HTMLFormElement;
-const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
-const btnText = submitBtn?.querySelector('.btn-text') as HTMLElement;
-const btnSpinner = submitBtn?.querySelector('.btn-spinner') as HTMLElement;
-const formMsg = document.getElementById('form-msg') as HTMLElement;
-
-function updatePlaceholders() {
-  const lang = localStorage.getItem('lang') || 'en';
-  document.querySelectorAll<HTMLElement>('[data-i18n-placeholder]').forEach((el) => {
-    const key = el.getAttribute('data-i18n-placeholder');
-    if (!key) return;
-    const translations = (window as any).__zadmedTranslations;
-    if (translations?.[lang]?.[key]) {
-      (el as HTMLInputElement).placeholder = translations[lang][key];
-    }
-  });
-}
-
-window.addEventListener('langchange', updatePlaceholders);
-document.addEventListener('DOMContentLoaded', updatePlaceholders);
-
-if (form && submitBtn && formMsg) {
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (!form.checkValidity()) { form.reportValidity(); return; }
-
-    submitBtn.disabled = true;
-    if (btnText) btnText.style.display = 'none';
-    if (btnSpinner) btnSpinner.style.display = 'block';
-    formMsg.style.display = 'none';
-    formMsg.className = 'form-msg';
-
-    const res = await fetch('https://formspree.io/f/YOUR_ID', {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    });
-
+  function updatePlaceholders() {
     const lang = localStorage.getItem('lang') || 'en';
-    if (res.ok) {
-      formMsg.textContent = lang === 'ar'
-        ? 'تم إرسال رسالتك بنجاح! سنتواصل معك قريبًا.'
-        : 'Message sent! We will be in touch.';
-      formMsg.classList.add('msg-success');
-      form.reset();
-    } else {
-      formMsg.textContent = lang === 'ar'
-        ? 'حدث خطأ. حاول مرة أخرى.'
-        : 'Something went wrong. Please try again.';
-      formMsg.classList.add('msg-error');
-    }
+    document.querySelectorAll<HTMLElement>('[data-i18n-placeholder]').forEach((el) => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (!key) return;
+      const translations = (window as any).__zadmedTranslations;
+      if (translations?.[lang]?.[key]) {
+        (el as HTMLInputElement | HTMLTextAreaElement).placeholder = translations[lang][key];
+      }
+    });
+  }
 
-    formMsg.style.display = 'block';
-    submitBtn.disabled = false;
-    if (btnText) btnText.style.display = 'block';
-    if (btnSpinner) btnSpinner.style.display = 'none';
-  });
-}
+  window.addEventListener('langchange', updatePlaceholders);
+  document.addEventListener('DOMContentLoaded', updatePlaceholders);
+</script>
 </script>
